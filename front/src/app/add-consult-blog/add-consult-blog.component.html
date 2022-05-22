@@ -1,0 +1,53 @@
+<div class="container">
+<div *ngIf="this.handleError">
+  <small style="color: red">{{handleError}}</small>
+</div>
+<form [formGroup]="blogForm">
+  <div class="form-group">
+<label >
+  Title:
+</label>
+<div >
+  <input [readOnly]="flag === 'consult'" class="form-control" formControlName="title"  />
+  <div *ngIf="submited && blogForm.controls['title'].hasError('required')">
+    <small style="color: red">  Title Required</small>
+  </div>
+
+</div>
+<label >
+  content :
+</label>
+<div >
+  <input   [readOnly]="flag === 'consult'"  class="form-control" formControlName="content"  />
+  <div *ngIf="submited && blogForm.controls['content'].hasError('required')">
+    <small style="color: red">  Content Required</small>
+  </div>
+
+</div>
+<label >
+  author :
+</label>
+<div >
+  <input  [readOnly]="flag === 'consult'"  class="form-control" formControlName="author"  />
+  <div *ngIf="submited && blogForm.controls['author'].hasError('required')">
+    <small style="color: red">  Author Required</small>
+  </div>
+  <br>
+</div>
+    <div *ngIf="flag === 'consult'" >
+      <img src="../../assets/upvote.png" style="height: 5% ; width: 5%"  alt="image"> upVote: {{this.blogForm.get('upvote').value}}
+      <img src="../../assets/downvote.png" style="height: 5% ; width: 5%" alt="image"> downVote: {{this.blogForm.get('downvote').value}}
+    </div>
+
+
+  </div>
+</form>
+
+
+
+  <div *ngIf="flag !== 'consult'"  class="center">
+    <button type="button" (click)="retour()" class="btn btn-danger">retour</button>
+    <button type="button" (click)="AddBlog()" class="btn btn-primary">enregistrer</button>
+  </div>
+
+</div>

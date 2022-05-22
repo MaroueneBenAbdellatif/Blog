@@ -1,0 +1,9 @@
+td,th { padding:1em; }
+thead { background-color : #557CBA; }
+tbody { background-color : #CED4E5; }
+tfoot { background-color : red;     }
+.center {
+  margin-left: auto;
+  margin-right: auto;
+
+}

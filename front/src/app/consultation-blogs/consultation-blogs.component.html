@@ -1,0 +1,37 @@
+<input
+  type="text"
+  class="form-control"
+  placeholder="search By Title , Content , Author..."
+  [(ngModel)]="searchString"
+/>
+<div *ngIf="this.handleError">
+  <small style="color: red">{{handleError}}</small>
+</div>
+<table class="center">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Content</th>
+    <th>Author</th>
+    <th>Upvote</th>
+    <th>DownVote</th>
+    <th style="text-align: center">Vote</th>
+    <th><button  (click)="navigationAddBlog()" class="btn btn-sm btn-success text-white">Add Blog</button></th>
+  </tr>
+  </thead>
+  <tbody *ngFor="let blog of blogs | filter : searchString; let index = index" >
+  <tr  [style.background-color]="blog.upvote > blog.downvote ? 'green' : blog.upvote < blog.downvote ? 'red': 'white' " >
+    <td>{{blog.title}}</td>
+    <td>{{blog.content}}</td>
+    <td>{{blog.author}}</td>
+    <td>{{blog.upvote}}</td>
+    <td>{{blog.downvote}}</td>
+    <td><button class="btn btn-primary btn-sm" (click)="vote(blog , 'Upvote')">
+      <span class="glyphicon glyphicon-arrow-up"></span> Upvote</button>
+      | <button class="btn btn-danger btn-sm" (click)="vote(blog , 'Downvote')">
+        <span class="glyphicon glyphicon-arrow-down"></span> Downvote</button></td>
+    <td (click)="navigationConsultationBlog(blog._id)"><button type="button" class="btn btn-primary btn-sm">continue reading...</button></td>
+  </tr>
+  </tbody>
+</table>
+
